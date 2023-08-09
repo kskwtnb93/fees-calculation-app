@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:cloudflare": "npx @cloudflare/next-on-pages --watch",
+    "build:cloudflare": "npx @cloudflare/next-on-pages",
+    "start:cloudflare": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
     "@types/node": "20.4.9",
