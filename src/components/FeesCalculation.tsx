@@ -49,7 +49,7 @@ function FeesCalculation() {
       }
     })
 
-    setTotal(newTotal + (newTotal * totalPercentage) / 100)
+    setTotal((newTotal + (newTotal * totalPercentage) / 100).toLocaleString())
   }
 
   const handleInputChange = (
