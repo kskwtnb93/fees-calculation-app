@@ -1,4 +1,4 @@
-import FeesCalculation from '@/components/fees-calculation'
+import FeesCalculation from '@/components/FeesCalculation'
 
 export const runtime = 'edge'
 
