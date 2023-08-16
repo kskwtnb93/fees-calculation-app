@@ -7,7 +7,7 @@ type InputItem = {
   unit: '円' | '%'
 }
 
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 function FeesCalculation() {
@@ -60,8 +60,11 @@ function FeesCalculation() {
     const newInputItems = [...InputItems]
     newInputItems[index][property] = value
     setInputItems(newInputItems)
-    calculateAmounts(InputItems)
   }
+
+  useEffect(() => {
+    calculateAmounts(InputItems)
+  }, [InputItems])
 
   return (
     <div>
