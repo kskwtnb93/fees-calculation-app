@@ -1,41 +1,51 @@
 'use client'
 
-type CalculateItem = {
+type InputItem = {
   id: string
   name: string
   amount: string
-  unit: string
+  unit: '円' | '%'
 }
 
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 function FeesCalculation() {
-  const [inputs, setInputs] = useState([
+  const [InputItems, setInputItems] = useState([
     { id: uuidv4(), name: '', amount: '0', unit: '円' },
   ])
   const [total, setTotal] = useState(0)
 
   const addInput = () => {
-    setInputs([...inputs, { id: uuidv4(), name: '', amount: '0', unit: '円' }])
+    setInputItems([
+      ...InputItems,
+      { id: uuidv4(), name: '', amount: '0', unit: '円' },
+    ])
   }
 
   const removeInput = (index: number) => {
-    const newInputs = inputs.filter((_, i) => i !== index)
-    setInputs(newInputs)
+    const newInputItems = InputItems.filter((_, i) => i !== index)
+    setInputItems(newInputItems)
   }
 
-  const calculateAmounts = (calculateItems: CalculateItem[]) => {
+  const calculateAmounts = (inputItems: InputItem[]) => {
     let newTotal = 0
     let totalPercentage = 0
 
-    calculateItems.forEach((item) => {
+    inputItems.forEach((item) => {
       const amount = parseFloat(item.amount)
 
-      if (item.unit === '円' && !isNaN(amount)) {
-        newTotal += amount
-      } else if (item.unit === '%' && !isNaN(amount)) {
-        totalPercentage += amount
+      if (!isNaN(amount)) {
+        switch (item.unit) {
+          case '円':
+            newTotal += amount
+            break
+          case '%':
+            totalPercentage += amount
+            break
+          default:
+            break
+        }
       }
     })
 
@@ -44,21 +54,23 @@ function FeesCalculation() {
 
   const handleInputChange = (
     index: number,
-    property: keyof CalculateItem,
+    property: keyof InputItem,
     value: string
   ) => {
-    const newInputs = [...inputs]
-    newInputs[index][property] = value
-    setInputs(newInputs)
-
-    calculateAmounts(inputs)
+    const newInputItems = [...InputItems]
+    newInputItems[index][property] = value
+    setInputItems(newInputItems)
+    calculateAmounts(InputItems)
   }
 
   return (
     <div>
-      <p className="text-center text-5xl font-bold">¥{total}</p>
+      <p className="text-center text-5xl font-bold">
+        <span className="text-4xl">¥ </span>
+        {total}
+      </p>
 
-      {inputs.map((input, index) => (
+      {InputItems.map((input, index) => (
         <div className="mt-4 first:mt-0" key={input.id}>
           <input
             className="text-black"
