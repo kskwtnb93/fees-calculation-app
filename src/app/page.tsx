@@ -11,7 +11,7 @@ export default function Home() {
       <p className="mb-16 text-center text-base font-thin max-sm:text-xs">
         以下の項目に金額と数量を入れてください。
         <br />
-        項目名は任意で入力してください。
+        項目名は未入力でも問題ありません。メモとしてお使いください。
       </p>
 
       <FeesCalculation />
