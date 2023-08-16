@@ -34,7 +34,7 @@ function FeesCalculation() {
 
       if (item.unit === '円' && !isNaN(amount)) {
         newTotal += amount
-      } else if (item.unit === '%') {
+      } else if (item.unit === '%' && !isNaN(amount)) {
         totalPercentage += amount
       }
     })
