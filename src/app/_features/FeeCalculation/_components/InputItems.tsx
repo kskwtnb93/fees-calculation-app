@@ -26,15 +26,25 @@ const InputItems: React.FC<Props> = ({
   ]
 
   return (
-    <div>
-      <div className="flex">
-        <p className="mr-4">項目名</p>
-        <p className="mr-4">金額やパーセンテージ</p>
-        <p className="mr-4">単位</p>
+    <div className="w-full">
+      <div className="grid grid-cols-10 gap-4 max-sm:gap-2">
+        <p className="col-span-4 text-base max-sm:col-span-3 max-sm:text-xs">
+          項目名
+        </p>
+        <p className="col-span-4 text-base max-sm:col-span-3 max-sm:text-xs">
+          数値
+        </p>
+        <p className="col-span-1 text-base max-sm:col-span-2 max-sm:text-xs">
+          単位
+        </p>
+        <p className="col-span-1 text-base max-sm:col-span-2 max-sm:text-xs"></p>
       </div>
       {items.map((item, index) => (
-        <div className="mt-4 flex" key={item.id}>
-          <div className="mr-4">
+        <div
+          className="mt-4 grid grid-cols-10 items-center gap-4 max-sm:mt-2 max-sm:gap-2"
+          key={item.id}
+        >
+          <div className="col-span-4 max-sm:col-span-3">
             <Input
               type="text"
               value={item.name}
@@ -42,7 +52,7 @@ const InputItems: React.FC<Props> = ({
             />
           </div>
 
-          <div className="mr-4">
+          <div className="col-span-4 max-sm:col-span-3">
             <Input
               type="text"
               value={item.amount}
@@ -52,7 +62,7 @@ const InputItems: React.FC<Props> = ({
             />
           </div>
 
-          <div className="mr-4">
+          <div className="col-span-1 max-sm:col-span-2">
             <Select
               options={options}
               value={item.unit}
@@ -60,8 +70,8 @@ const InputItems: React.FC<Props> = ({
             />
           </div>
 
-          <div className="">
-            <DeleteButton onClick={removeInput} />
+          <div className="col-span-1 flex justify-center max-sm:col-span-2">
+            <DeleteButton onClick={() => removeInput(index)} />
           </div>
         </div>
       ))}

@@ -60,11 +60,13 @@ function FeesCalculation() {
   }, [inputItems])
 
   return (
-    <div>
-      <p className="mb-16 text-center text-base font-thin max-sm:text-xs">
+    <div className="w-full max-w-3xl">
+      <p className="mb-16 text-center text-base font-thin leading-loose max-sm:mb-8 max-sm:text-xs max-sm:leading-loose">
         以下の項目に金額と数量を入れてください。
         <br />
-        項目名は未入力でも問題ありません。メモとしてお使いください。
+        項目名は未入力でも問題ありません。
+        <br />
+        消費税や割引がある場合は、単位で「%」を選択してください。
       </p>
 
       <div className="mb-8">
