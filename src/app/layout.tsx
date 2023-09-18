@@ -3,6 +3,8 @@ import './globals.css'
 // import { Inter } from 'next/font/google'
 import { Noto_Sans_JP } from 'next/font/google'
 
+import StoreProvider from './_store/StoreProvider.tsx'
+
 import type { Metadata } from 'next'
 // const inter = Inter({ subsets: ['latin'] })
 export const notoSansJP = Noto_Sans_JP({
@@ -22,8 +24,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja">
-      <body className={notoSansJP.className}>{children}</body>
-    </html>
+    <StoreProvider>
+      <html lang="ja">
+        <body className={notoSansJP.className}>{children}</body>
+      </html>
+    </StoreProvider>
   )
 }

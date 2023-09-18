@@ -1,3 +1,4 @@
+import Counter from '@/app/_features/Counter'
 import FeesCalculation from '@/app/_features/FeeCalculation'
 
 export const runtime = 'edge'
@@ -12,6 +13,8 @@ export default function Home() {
       </div>
 
       <FeesCalculation />
+
+      <Counter />
     </main>
   )
 }
