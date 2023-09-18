@@ -1,11 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import AddButton from '@/app/_features/FeeCalculation/_components/Buttons/AddButton.tsx'
 import InputItems from '@/app/_features/FeeCalculation/_components/InputItems.tsx'
 import Total from '@/app/_features/FeeCalculation/_components/Total.tsx'
+
+import type { InputItem } from '@/app/_features/FeeCalculation/_types'
 
 function FeesCalculation() {
   const initialItem = { id: uuidv4(), name: '', amount: '0', unit: '円' }
