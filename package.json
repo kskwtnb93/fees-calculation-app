@@ -10,8 +10,7 @@
     "dev:cloudflare": "npx @cloudflare/next-on-pages --watch",
     "build:cloudflare": "npx @cloudflare/next-on-pages",
     "start:cloudflare": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
-    "prepare": "husky install",
-    "fix": "eslint src --fix"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@types/react-dom": "18.2.7",
