@@ -1,22 +1,24 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import AddButton from '@/app/_features/FeeCalculation/_components/Buttons/AddButton.tsx'
 import InputItems from '@/app/_features/FeeCalculation/_components/InputItems.tsx'
 import Total from '@/app/_features/FeeCalculation/_components/Total.tsx'
+import { calculateAmounts } from '@/app/_features/FeeCalculation/_utils/index.ts'
 
 import type { InputItem } from '@/app/_features/FeeCalculation/_types'
 
 function FeesCalculation() {
-  const initialItem = [
+  const initialItems = [
     { id: uuidv4(), name: '商品１（サンプル）', amount: '700', unit: '円' },
     { id: uuidv4(), name: '商品２（サンプル）', amount: '300', unit: '円' },
     { id: uuidv4(), name: '消費税（サンプル）', amount: '10', unit: '%' },
   ]
-  const [inputItems, setInputItems] = useState(initialItem)
-  const [total, setTotal] = useState(0)
+  const [inputItems, setInputItems] = useState(initialItems)
+  const initialTotal = calculateAmounts(inputItems)
+  const [total, setTotal] = useState(initialTotal)
 
   const addInput = () => {
     const newItem = {
@@ -28,8 +30,8 @@ function FeesCalculation() {
     setInputItems([...inputItems, newItem])
   }
 
-  const removeInput = (index: number) => {
-    const newInputItems = inputItems.filter((_, i) => i !== index)
+  const removeInput = (targetIndex: number) => {
+    const newInputItems = inputItems.filter((_, i) => i !== targetIndex)
     setInputItems(newInputItems)
   }
 
@@ -41,35 +43,10 @@ function FeesCalculation() {
     const newInputItems = [...inputItems]
     newInputItems[index][property] = value
     setInputItems(newInputItems)
+
+    const newTotal = calculateAmounts(newInputItems)
+    setTotal(newTotal)
   }
-
-  const calculateAmounts = (inputItems: InputItem[]) => {
-    let newTotal = 0
-    let totalPercentage = 0
-
-    inputItems.forEach((item) => {
-      const amount = parseFloat(item.amount)
-
-      if (!isNaN(amount)) {
-        switch (item.unit) {
-          case '円':
-            newTotal += amount
-            break
-          case '%':
-            totalPercentage += amount
-            break
-          default:
-            break
-        }
-      }
-    })
-
-    setTotal((newTotal + (newTotal * totalPercentage) / 100).toLocaleString())
-  }
-
-  useEffect(() => {
-    calculateAmounts(inputItems)
-  }, [inputItems])
 
   return (
     <div className="w-full max-w-3xl">
