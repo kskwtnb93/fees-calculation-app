@@ -19,7 +19,13 @@ function FeesCalculation() {
   const [total, setTotal] = useState(0)
 
   const addInput = () => {
-    setInputItems([...inputItems, initialItem])
+    const newItem = {
+      id: uuidv4(),
+      name: '',
+      amount: '',
+      unit: '円',
+    }
+    setInputItems([...inputItems, newItem])
   }
 
   const removeInput = (index: number) => {
