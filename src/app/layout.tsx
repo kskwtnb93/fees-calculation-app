@@ -16,6 +16,10 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: '料金計算',
   description: '料金を計算するアプリです。',
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function RootLayout({
