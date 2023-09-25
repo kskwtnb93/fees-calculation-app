@@ -1,8 +1,8 @@
 import React from 'react'
 
-import DeleteButton from '@/app/_features/FeeCalculation/_components/Buttons/DeleteButton.tsx'
-import Input from '@/app/_features/FeeCalculation/_components/Inputs/Input.tsx'
-import Select from '@/app/_features/FeeCalculation/_components/Inputs/Select.tsx'
+import DeleteButton from '@/app/_features/FeeCalculation/_components/Buttons/DeleteButton'
+import Input from '@/app/_features/FeeCalculation/_components/Inputs/Input'
+import Select from '@/app/_features/FeeCalculation/_components/Inputs/Select'
 
 import type { InputItem } from '@/app/_features/FeeCalculation/_types'
 

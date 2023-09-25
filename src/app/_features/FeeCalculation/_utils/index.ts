@@ -1,6 +1,6 @@
 import type { InputItem } from '@/app/_features/FeeCalculation/_types'
 
-export const calculateAmounts = (inputItems: InputItem[]) => {
+export const calculateAmounts = (inputItems: InputItem[]): string => {
   let newTotal = 0
   let totalPercentage = 0
 

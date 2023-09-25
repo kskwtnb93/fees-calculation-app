@@ -48,6 +48,6 @@
     "*.{js,jsx,ts,tsx,json}": "prettier --write"
   },
   "volta": {
-    "node": "18.16.1"
+    "node": "16.17.0"
   }
 }

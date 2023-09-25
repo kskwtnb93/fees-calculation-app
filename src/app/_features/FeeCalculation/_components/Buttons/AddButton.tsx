@@ -1,7 +1,7 @@
 import React from 'react'
 
 type Props = {
-  onClick: (event: React.onClick) => void
+  onClick: (event: React.MouseEvent) => void
 }
 
 const AddButton: React.FC<Props> = ({ onClick }) => {

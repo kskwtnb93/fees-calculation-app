@@ -3,15 +3,15 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-import AddButton from '@/app/_features/FeeCalculation/_components/Buttons/AddButton.tsx'
-import InputItems from '@/app/_features/FeeCalculation/_components/InputItems.tsx'
-import Total from '@/app/_features/FeeCalculation/_components/Total.tsx'
-import { calculateAmounts } from '@/app/_features/FeeCalculation/_utils/index.ts'
+import AddButton from '@/app/_features/FeeCalculation/_components/Buttons/AddButton'
+import InputItems from '@/app/_features/FeeCalculation/_components/InputItems'
+import Total from '@/app/_features/FeeCalculation/_components/Total'
+import { calculateAmounts } from '@/app/_features/FeeCalculation/_utils/index'
 
 import type { InputItem } from '@/app/_features/FeeCalculation/_types'
 
 function FeesCalculation() {
-  const initialItems = [
+  const initialItems: InputItem[] = [
     { id: uuidv4(), name: '商品１（サンプル）', amount: '700', unit: '円' },
     { id: uuidv4(), name: '商品２（サンプル）', amount: '300', unit: '円' },
     { id: uuidv4(), name: '消費税（サンプル）', amount: '10', unit: '%' },
@@ -21,7 +21,7 @@ function FeesCalculation() {
   const [total, setTotal] = useState(initialTotal)
 
   const addInput = () => {
-    const newItem = {
+    const newItem: InputItem = {
       id: uuidv4(),
       name: '',
       amount: '',
@@ -40,8 +40,14 @@ function FeesCalculation() {
     property: keyof InputItem,
     value: string
   ) => {
-    const newInputItems = [...inputItems]
-    newInputItems[index][property] = value
+    const newInputItems: InputItem[] = [...inputItems]
+
+    if (property === 'unit' && (value === '円' || value === '%')) {
+      newInputItems[index][property] = value
+    } else if (property === 'amount') {
+      newInputItems[index][property] = value
+    }
+
     setInputItems(newInputItems)
 
     const newTotal = calculateAmounts(newInputItems)

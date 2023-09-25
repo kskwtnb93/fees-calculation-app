@@ -2,9 +2,9 @@
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { decrement, increment } from '../../_store/slice.ts'
+import { decrement, increment } from '@/app/_store/slice'
 
-import type { RootState } from '../../_store/store.ts'
+import type { RootState } from '@/app/_store/store'
 
 export default function Counter() {
   const count = useSelector((state: RootState) => state.counter.value)

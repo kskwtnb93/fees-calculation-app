@@ -1,5 +1,9 @@
 import React from 'react'
 
+type Props = {
+  amount: string
+}
+
 const Total: React.FC<Props> = ({ amount }) => {
   return (
     <div className="overflow-x-auto border-b border-gray-600 pb-4 text-center text-6xl font-bold max-sm:text-4xl">
