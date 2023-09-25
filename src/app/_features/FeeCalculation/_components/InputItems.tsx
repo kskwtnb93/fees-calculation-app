@@ -33,7 +33,7 @@ const InputItems: React.FC<Props> = ({
           項目名
         </p>
         <p className="col-span-4 text-base max-sm:col-span-3 max-sm:text-xs">
-          金額／税率など
+          金額／税率など（※半角数字）
         </p>
         <p className="col-span-1 text-base max-sm:col-span-2 max-sm:text-xs">
           単位
