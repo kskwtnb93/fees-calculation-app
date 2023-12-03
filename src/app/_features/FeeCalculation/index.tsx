@@ -44,7 +44,7 @@ function FeesCalculation() {
 
     if (property === 'unit' && (value === '円' || value === '%')) {
       newInputItems[index][property] = value
-    } else if (property === 'amount') {
+    } else {
       newInputItems[index][property] = value
     }
 
