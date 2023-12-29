@@ -16,13 +16,13 @@ import React from 'react'
 
 import InputItem from '@/app/_features/FeeCalculation/_components/InputItem'
 
-import type { InputItem } from '@/app/_features/FeeCalculation/_types'
+import type { InputItemType } from '@/app/_features/FeeCalculation/_types'
 
 type Props = {
-  items: InputItem[]
+  items: InputItemType[]
   handleInputChange: (
     index: number,
-    property: keyof InputItem,
+    property: keyof InputItemType,
     value: string
   ) => void
   removeInput: (index: number) => void

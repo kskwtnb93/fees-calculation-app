@@ -10,10 +10,10 @@ import InputItems from '@/app/_features/FeeCalculation/_components/InputItems'
 import Total from '@/app/_features/FeeCalculation/_components/Total'
 import { calculateAmounts } from '@/app/_features/FeeCalculation/_utils/index'
 
-import type { InputItem } from '@/app/_features/FeeCalculation/_types'
+import type { InputItemType } from '@/app/_features/FeeCalculation/_types'
 
 function FeesCalculation() {
-  const initialItems: InputItem[] = [
+  const initialItems: InputItemType[] = [
     { id: uuidv4(), name: '商品１（サンプル）', amount: '700', unit: '円' },
     { id: uuidv4(), name: '商品２（サンプル）', amount: '300', unit: '円' },
     { id: uuidv4(), name: '消費税（サンプル）', amount: '10', unit: '%' },
@@ -23,7 +23,7 @@ function FeesCalculation() {
   const [total, setTotal] = useState(initialTotal)
 
   const addInput = () => {
-    const newItem: InputItem = {
+    const newItem: InputItemType = {
       id: uuidv4(),
       name: '',
       amount: '',
@@ -41,10 +41,10 @@ function FeesCalculation() {
 
   const handleInputChange = (
     index: number,
-    property: keyof InputItem,
+    property: keyof InputItemType,
     value: string
   ) => {
-    const newInputItems: InputItem[] = [...inputItems]
+    const newInputItems: InputItemType[] = [...inputItems]
 
     if (property === 'unit' && (value === '円' || value === '%')) {
       newInputItems[index][property] = value

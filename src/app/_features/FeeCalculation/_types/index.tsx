@@ -1,4 +1,4 @@
-export type InputItem = {
+export type InputItemType = {
   id: string
   name: string
   amount: string

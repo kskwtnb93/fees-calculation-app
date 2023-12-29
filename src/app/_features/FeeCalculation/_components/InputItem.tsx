@@ -3,22 +3,21 @@ import { CSS } from '@dnd-kit/utilities'
 import React from 'react'
 
 import DeleteButton from '@/app/_features/FeeCalculation/_components/Buttons/DeleteButton'
-import DragHandleButton from '@/app/_features/FeeCalculation/_components/Buttons/DragHandleButton.tsx'
+import DragHandleButton from '@/app/_features/FeeCalculation/_components/Buttons/DragHandleButton'
 import Input from '@/app/_features/FeeCalculation/_components/Inputs/Input'
 import Select from '@/app/_features/FeeCalculation/_components/Inputs/Select'
 
-import type { InputItem } from '@/app/_features/FeeCalculation/_types'
+import type { InputItemType } from '@/app/_features/FeeCalculation/_types'
 
 type Props = {
-  item: InputItem
+  item: InputItemType
   index: number
   handleInputChange: (
     index: number,
-    property: keyof InputItem,
+    property: keyof InputItemType,
     value: string
   ) => void
   removeInput: (index: number) => void
-  handleDragEnd: (event: DragEndEvent) => void
 }
 
 const InputItem: React.FC<Props> = ({
@@ -26,7 +25,6 @@ const InputItem: React.FC<Props> = ({
   index,
   handleInputChange,
   removeInput,
-  handleDragEnd,
 }) => {
   const options = [
     { text: '円', value: '円' },
@@ -42,7 +40,7 @@ const InputItem: React.FC<Props> = ({
     transition,
   } = useSortable({ id: item.id })
 
-  const style = {
+  const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
     zIndex: isDragging ? 10 : 0,
