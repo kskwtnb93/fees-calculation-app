@@ -33,6 +33,8 @@ function FeesCalculation() {
   const removeInput = (targetIndex: number) => {
     const newInputItems = inputItems.filter((_, i) => i !== targetIndex)
     setInputItems(newInputItems)
+    const newTotal = calculateAmounts(newInputItems)
+    setTotal(newTotal)
   }
 
   const handleInputChange = (
