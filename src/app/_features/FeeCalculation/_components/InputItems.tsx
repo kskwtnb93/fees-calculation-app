@@ -1,8 +1,20 @@
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
 import React from 'react'
 
-import DeleteButton from '@/app/_features/FeeCalculation/_components/Buttons/DeleteButton'
-import Input from '@/app/_features/FeeCalculation/_components/Inputs/Input'
-import Select from '@/app/_features/FeeCalculation/_components/Inputs/Select'
+import InputItem from '@/app/_features/FeeCalculation/_components/InputItem'
 
 import type { InputItem } from '@/app/_features/FeeCalculation/_types'
 
@@ -14,70 +26,72 @@ type Props = {
     value: string
   ) => void
   removeInput: (index: number) => void
+  handleDragEnd: (event: DragEndEvent) => void
 }
 
 const InputItems: React.FC<Props> = ({
   items,
   handleInputChange,
   removeInput,
+  handleDragEnd,
 }) => {
   const options = [
     { text: '円', value: '円' },
     { text: '%', value: '%' },
   ]
 
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  )
+
   return (
     <div className="w-full">
-      <div className="grid grid-cols-10 gap-4 max-sm:gap-2">
-        <p className="col-span-4 flex items-center text-base max-sm:col-span-3 max-sm:text-xs">
-          項目名
-        </p>
-        <p className="col-span-4 flex items-center text-base max-sm:col-span-3 max-sm:text-xs">
-          金額／税率など
-          <br className="hidden max-sm:inline-block" />
-          （※半角数字）
-        </p>
-        <p className="col-span-1 flex items-center text-base max-sm:col-span-2 max-sm:text-xs">
-          単位
-        </p>
-        <p className="col-span-1 flex items-center text-base max-sm:col-span-2 max-sm:text-xs"></p>
-      </div>
-      {items.map((item, index) => (
-        <div
-          className="mt-4 grid grid-cols-10 items-center gap-4 max-sm:mt-2 max-sm:gap-2"
-          key={item.id}
-        >
-          <div className="col-span-4 max-sm:col-span-3">
-            <Input
-              type="text"
-              value={item.name}
-              onChange={(e) => handleInputChange(index, 'name', e.target.value)}
-            />
-          </div>
-
-          <div className="col-span-4 max-sm:col-span-3">
-            <Input
-              type="text"
-              value={item.amount}
-              onChange={(e) =>
-                handleInputChange(index, 'amount', e.target.value)
-              }
-            />
-          </div>
-
-          <div className="col-span-1 max-sm:col-span-2">
-            <Select
-              options={options}
-              value={item.unit}
-              onChange={(e) => handleInputChange(index, 'unit', e.target.value)}
-            />
-          </div>
-
-          <div className="col-span-1 flex justify-center max-sm:col-span-2">
-            <DeleteButton onClick={() => removeInput(index)} />
-          </div>
+      <div className="grid grid-cols-12 gap-4 max-sm:grid-cols-11 max-sm:gap-2">
+        <div className="col-span-1 flex items-center max-sm:col-span-1">
+          <p className="text-base max-sm:text-xs"></p>
         </div>
-      ))}
+
+        <div className="col-span-5 flex items-center max-sm:col-span-3">
+          <p className="text-base max-sm:text-xs">項目名</p>
+        </div>
+
+        <div className="col-span-4 flex items-center max-sm:col-span-3">
+          <p className="text-base max-sm:text-xs">
+            金額／税率など
+            <br className="hidden max-sm:inline-block" />
+            （※半角数字）
+          </p>
+        </div>
+
+        <div className="col-span-1 flex items-center max-sm:col-span-2">
+          <p className="text-base max-sm:text-xs">単位</p>
+        </div>
+
+        <div className="col-span-1 flex items-center justify-center max-sm:col-span-2">
+          <p className="text-base max-sm:text-xs"></p>
+        </div>
+      </div>
+
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext items={items} strategy={verticalListSortingStrategy}>
+          {items.map((item, index) => (
+            <InputItem
+              key={item.id}
+              item={item}
+              index={index}
+              handleInputChange={handleInputChange}
+              removeInput={removeInput}
+            />
+          ))}
+        </SortableContext>
+      </DndContext>
     </div>
   )
 }

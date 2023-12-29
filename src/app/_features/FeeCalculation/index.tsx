@@ -1,5 +1,7 @@
 'use client'
 
+import { DragEndEvent } from '@dnd-kit/core'
+import { arrayMove } from '@dnd-kit/sortable'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -56,6 +58,21 @@ function FeesCalculation() {
     setTotal(newTotal)
   }
 
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event
+    console.log(event)
+
+    if (!over) {
+      return
+    }
+
+    if (active.id !== over.id) {
+      const oldIndex = inputItems.findIndex((v) => v.id === active.id)
+      const newIndex = inputItems.findIndex((v) => v.id === over.id)
+      setInputItems(arrayMove(inputItems, oldIndex, newIndex))
+    }
+  }
+
   return (
     <div className="w-full max-w-3xl">
       <p className="mb-8 text-center text-base font-thin leading-loose max-sm:mb-6 max-sm:text-xs max-sm:leading-loose">
@@ -74,6 +91,7 @@ function FeesCalculation() {
         items={inputItems}
         handleInputChange={handleInputChange}
         removeInput={removeInput}
+        handleDragEnd={handleDragEnd}
       />
 
       <div className="mt-4 flex justify-end">
