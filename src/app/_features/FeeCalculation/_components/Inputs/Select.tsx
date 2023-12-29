@@ -15,7 +15,7 @@ const Input: React.FC<Props> = ({ options, value, onChange }) => {
   return (
     <select
       value={value}
-      className="max-sm:text-s block h-10 w-full appearance-none rounded-lg border border-gray-600 bg-gray-700 p-2 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+      className="block h-10 w-full appearance-none rounded-lg border border-gray-600 bg-gray-700 p-1.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 max-sm:text-base"
       onChange={onChange}
     >
       {options.map((option, index) => (
