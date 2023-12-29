@@ -29,16 +29,18 @@ const InputItems: React.FC<Props> = ({
   return (
     <div className="w-full">
       <div className="grid grid-cols-10 gap-4 max-sm:gap-2">
-        <p className="col-span-4 text-base max-sm:col-span-3 max-sm:text-xs">
+        <p className="col-span-4 flex items-center text-base max-sm:col-span-3 max-sm:text-xs">
           項目名
         </p>
-        <p className="col-span-4 text-base max-sm:col-span-3 max-sm:text-xs">
-          金額／税率など（※半角数字）
+        <p className="col-span-4 flex items-center text-base max-sm:col-span-3 max-sm:text-xs">
+          金額／税率など
+          <br className="hidden max-sm:inline-block" />
+          （※半角数字）
         </p>
-        <p className="col-span-1 text-base max-sm:col-span-2 max-sm:text-xs">
+        <p className="col-span-1 flex items-center text-base max-sm:col-span-2 max-sm:text-xs">
           単位
         </p>
-        <p className="col-span-1 text-base max-sm:col-span-2 max-sm:text-xs"></p>
+        <p className="col-span-1 flex items-center text-base max-sm:col-span-2 max-sm:text-xs"></p>
       </div>
       {items.map((item, index) => (
         <div
