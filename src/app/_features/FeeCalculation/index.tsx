@@ -97,7 +97,7 @@ function FeesCalculation() {
 
   return (
     <div className="w-full max-w-3xl">
-      <p className="mb-8 text-center text-base font-thin leading-loose max-sm:mb-6 max-sm:text-xs max-sm:leading-loose">
+      <p className="mb-4 text-center text-base font-thin leading-loose max-sm:mb-2 max-sm:text-xs max-sm:leading-loose">
         以下の項目に金額または税率など（※半角数字）と単位を入力してください。
         <br />
         項目名は未入力でも問題ありません。
