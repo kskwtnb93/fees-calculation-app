@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 type Props = {
   value: string
@@ -9,6 +9,11 @@ type Props = {
 
 const Quantity: React.FC<Props> = ({ value, onChange }) => {
   const [quantity, setQuantity] = useState(value)
+
+  // valueが変更されたらコンポーネント内のquantityも同じ値に更新する
+  useEffect(() => {
+    setQuantity(value)
+  }, [value])
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => (Number(prevQuantity) + 1).toString())
