@@ -5,7 +5,7 @@ import { CSS } from '@dnd-kit/utilities'
 import React from 'react'
 
 import DeleteButton from '@/app/_features/FeeCalculation/_components/Buttons/DeleteButton'
-import DragHandleButton from '@/app/_features/FeeCalculation/_components/Buttons/DragHandleButton.tsx'
+import DragHandleButton from '@/app/_features/FeeCalculation/_components/Buttons/DragHandleButton'
 import Input from '@/app/_features/FeeCalculation/_components/Inputs/Input'
 import Quantity from '@/app/_features/FeeCalculation/_components/Inputs/Quantity'
 import Select from '@/app/_features/FeeCalculation/_components/Inputs/Select'
