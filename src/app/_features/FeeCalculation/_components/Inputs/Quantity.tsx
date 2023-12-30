@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 
 type Props = {
-  value: number
+  value: string
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -11,14 +11,14 @@ const Quantity: React.FC<Props> = ({ value, onChange }) => {
   const [quantity, setQuantity] = useState(value)
 
   const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1)
-    onChange(createFakeEvent(quantity + 1))
+    setQuantity((prevQuantity) => (Number(prevQuantity) + 1).toString())
+    onChange(createFakeEvent((Number(quantity) + 1).toString()))
   }
 
   const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1)
-      onChange(createFakeEvent(quantity - 1))
+    if (Number(quantity) > 1) {
+      setQuantity((prevQuantity) => (Number(prevQuantity) - 1).toString())
+      onChange(createFakeEvent((Number(quantity) - 1).toString()))
     }
   }
 

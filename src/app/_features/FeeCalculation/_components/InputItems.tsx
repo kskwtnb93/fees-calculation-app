@@ -1,5 +1,7 @@
 'use client'
 
+import React from 'react'
+
 import {
   closestCenter,
   DndContext,
@@ -14,8 +16,6 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
-import React from 'react'
-
 import InputItem from '@/app/_features/FeeCalculation/_components/InputItem'
 
 import type { InputItemType } from '@/app/_features/FeeCalculation/_types'
@@ -37,11 +37,6 @@ const InputItems: React.FC<Props> = ({
   removeInput,
   handleDragEnd,
 }) => {
-  const options = [
-    { text: '円', value: '円' },
-    { text: '%', value: '%' },
-  ]
-
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {

@@ -1,8 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import { DragEndEvent } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
-import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import AddButton from '@/app/_features/FeeCalculation/_components/Buttons/AddButton'
@@ -13,27 +13,27 @@ import { calculateAmounts } from '@/app/_features/FeeCalculation/_utils/index'
 import type { InputItemType } from '@/app/_features/FeeCalculation/_types'
 
 function FeesCalculation() {
-  const initialItems: InputItem[] = [
+  const initialItems: InputItemType[] = [
     {
       id: uuidv4(),
       name: '商品１（サンプル）',
       amount: '700',
       unit: '円',
-      quantity: 1,
+      quantity: '1',
     },
     {
       id: uuidv4(),
       name: '商品２（サンプル）',
       amount: '300',
       unit: '円',
-      quantity: 1,
+      quantity: '1',
     },
     {
       id: uuidv4(),
       name: '消費税（サンプル）',
       amount: '10',
       unit: '%',
-      quantity: 1,
+      quantity: '1',
     },
   ]
   const [inputItems, setInputItems] = useState(initialItems)
@@ -46,7 +46,7 @@ function FeesCalculation() {
       name: '',
       amount: '',
       unit: '円',
-      quantity: 1,
+      quantity: '1',
     }
     setInputItems([...inputItems, newItem])
   }
