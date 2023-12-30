@@ -1,11 +1,5 @@
 node_modules
-.vscode/*
-*.yml
-build
+.next
 dist
-dist-ssr
-*.local
-logs
-*.log
-.DS_Store
-*-lock.yaml
+out
+public/
