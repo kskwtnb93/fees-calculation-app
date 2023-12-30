@@ -13,10 +13,28 @@ import { calculateAmounts } from '@/app/_features/FeeCalculation/_utils/index'
 import type { InputItemType } from '@/app/_features/FeeCalculation/_types'
 
 function FeesCalculation() {
-  const initialItems: InputItemType[] = [
-    { id: uuidv4(), name: '商品１（サンプル）', amount: '700', unit: '円' },
-    { id: uuidv4(), name: '商品２（サンプル）', amount: '300', unit: '円' },
-    { id: uuidv4(), name: '消費税（サンプル）', amount: '10', unit: '%' },
+  const initialItems: InputItem[] = [
+    {
+      id: uuidv4(),
+      name: '商品１（サンプル）',
+      amount: '700',
+      unit: '円',
+      quantity: 1,
+    },
+    {
+      id: uuidv4(),
+      name: '商品２（サンプル）',
+      amount: '300',
+      unit: '円',
+      quantity: 1,
+    },
+    {
+      id: uuidv4(),
+      name: '消費税（サンプル）',
+      amount: '10',
+      unit: '%',
+      quantity: 1,
+    },
   ]
   const [inputItems, setInputItems] = useState(initialItems)
   const initialTotal = calculateAmounts(inputItems)
@@ -28,6 +46,7 @@ function FeesCalculation() {
       name: '',
       amount: '',
       unit: '円',
+      quantity: 1,
     }
     setInputItems([...inputItems, newItem])
   }
@@ -48,7 +67,11 @@ function FeesCalculation() {
 
     if (property === 'unit' && (value === '円' || value === '%')) {
       newInputItems[index][property] = value
-    } else if (property === 'amount' || property === 'name') {
+    } else if (
+      property === 'amount' ||
+      property === 'name' ||
+      property === 'quantity'
+    ) {
       newInputItems[index][property] = value
     }
 
@@ -60,7 +83,6 @@ function FeesCalculation() {
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event
-    console.log(event)
 
     if (!over) {
       return
@@ -83,7 +105,7 @@ function FeesCalculation() {
         消費税や割引がある場合は、単位で「%」を選択してください。
       </p>
 
-      <div className="mb-8">
+      <div className="mb-8 max-sm:mb-6">
         <Total amount={total} />
       </div>
 
@@ -94,7 +116,7 @@ function FeesCalculation() {
         handleDragEnd={handleDragEnd}
       />
 
-      <div className="mt-4 flex justify-end">
+      <div className="mt-4 flex justify-end max-sm:mt-6">
         <AddButton onClick={addInput} />
       </div>
     </div>

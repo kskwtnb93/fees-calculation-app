@@ -6,14 +6,15 @@ export const calculateAmounts = (inputItems: InputItemType[]): string => {
 
   inputItems.forEach((item) => {
     const amount = parseFloat(item.amount)
+    const quantity = parseFloat(item.quantity)
 
     if (!isNaN(amount)) {
       switch (item.unit) {
         case '円':
-          newTotal += amount
+          newTotal += amount * quantity
           break
         case '%':
-          totalPercentage += amount
+          totalPercentage += amount * quantity
           break
         default:
           break

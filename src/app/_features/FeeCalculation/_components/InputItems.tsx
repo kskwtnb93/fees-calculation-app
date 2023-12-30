@@ -1,3 +1,5 @@
+'use client'
+
 import {
   closestCenter,
   DndContext,
@@ -49,29 +51,33 @@ const InputItems: React.FC<Props> = ({
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-12 gap-4 max-sm:grid-cols-11 max-sm:gap-2">
-        <div className="col-span-1 flex items-center max-sm:col-span-1">
-          <p className="text-base max-sm:text-xs"></p>
+      <div className="grid grid-cols-11 gap-4 max-sm:hidden max-sm:grid-cols-11 max-sm:gap-2">
+        <div className="col-span-1 flex items-center justify-center max-sm:col-span-1">
+          <p className="text-center text-sm max-sm:text-xs"></p>
         </div>
 
-        <div className="col-span-5 flex items-center max-sm:col-span-3">
-          <p className="text-base max-sm:text-xs">項目名</p>
+        <div className="col-span-4 flex items-center justify-center max-sm:col-span-3">
+          <p className="text-center text-sm max-sm:text-xs">項目名</p>
         </div>
 
-        <div className="col-span-4 flex items-center max-sm:col-span-3">
-          <p className="text-base max-sm:text-xs">
+        <div className="col-span-2 flex items-center justify-center max-sm:col-span-3">
+          <p className="text-center text-sm max-sm:text-xs">
             金額／税率など
-            <br className="hidden max-sm:inline-block" />
+            <br />
             （※半角数字）
           </p>
         </div>
 
-        <div className="col-span-1 flex items-center max-sm:col-span-2">
-          <p className="text-base max-sm:text-xs">単位</p>
+        <div className="col-span-1 flex items-center justify-center max-sm:col-span-2">
+          <p className="text-center text-sm max-sm:text-xs">単位</p>
+        </div>
+
+        <div className="col-span-2 flex items-center justify-center max-sm:col-span-2">
+          <p className="text-center text-sm max-sm:text-xs">数量</p>
         </div>
 
         <div className="col-span-1 flex items-center justify-center max-sm:col-span-2">
-          <p className="text-base max-sm:text-xs"></p>
+          <p className="text-center text-sm max-sm:text-xs"></p>
         </div>
       </div>
 
