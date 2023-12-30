@@ -1,3 +1,5 @@
+'use client'
+
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import React from 'react'
@@ -5,6 +7,7 @@ import React from 'react'
 import DeleteButton from '@/app/_features/FeeCalculation/_components/Buttons/DeleteButton'
 import DragHandleButton from '@/app/_features/FeeCalculation/_components/Buttons/DragHandleButton.tsx'
 import Input from '@/app/_features/FeeCalculation/_components/Inputs/Input'
+import Quantity from '@/app/_features/FeeCalculation/_components/Inputs/Quantity'
 import Select from '@/app/_features/FeeCalculation/_components/Inputs/Select'
 
 import type { InputItem } from '@/app/_features/FeeCalculation/_types'
@@ -51,16 +54,16 @@ const InputItem: React.FC<Props> = ({
 
   return (
     <div ref={setNodeRef} style={style}>
-      <div className="mt-4 grid grid-cols-12 items-center gap-4 max-sm:mt-2 max-sm:grid-cols-11 max-sm:gap-2">
+      <div className="mt-4 grid grid-cols-11 items-center gap-4 max-sm:order-1 max-sm:mt-6 max-sm:grid-cols-7 max-sm:gap-2">
         <div
-          className="col-span-1 max-sm:col-span-1"
+          className="col-span-1 h-full max-sm:col-span-1 max-sm:row-span-2"
           {...attributes}
           {...listeners}
         >
           <DragHandleButton />
         </div>
 
-        <div className="col-span-5 max-sm:col-span-3">
+        <div className="col-span-4 max-sm:order-2 max-sm:col-span-5">
           <Input
             type="text"
             value={item.name}
@@ -68,7 +71,7 @@ const InputItem: React.FC<Props> = ({
           />
         </div>
 
-        <div className="col-span-4 max-sm:col-span-3">
+        <div className="col-span-2 max-sm:order-4 max-sm:col-span-2">
           <Input
             type="text"
             value={item.amount}
@@ -76,7 +79,7 @@ const InputItem: React.FC<Props> = ({
           />
         </div>
 
-        <div className="col-span-1 max-sm:col-span-2">
+        <div className="col-span-1 max-sm:order-5 max-sm:col-span-1">
           <Select
             options={options}
             value={item.unit}
@@ -84,7 +87,16 @@ const InputItem: React.FC<Props> = ({
           />
         </div>
 
-        <div className="col-span-1 flex justify-center max-sm:col-span-2">
+        <div className="col-span-2 max-sm:order-6 max-sm:col-span-2">
+          <Quantity
+            value={item.quantity}
+            onChange={(e) =>
+              handleInputChange(index, 'quantity', e.target.value)
+            }
+          />
+        </div>
+
+        <div className="col-span-1 flex h-full justify-center max-sm:order-3 max-sm:col-span-1 max-sm:row-span-2">
           <DeleteButton onClick={() => removeInput(index)} />
         </div>
       </div>

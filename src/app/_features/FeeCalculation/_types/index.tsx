@@ -3,4 +3,5 @@ export type InputItem = {
   name: string
   amount: string
   unit: '円' | '%'
+  quantity: number
 }

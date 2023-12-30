@@ -1,8 +1,10 @@
+'use client'
+
 import React from 'react'
 
 const DragHandleButton: React.FC = () => {
   return (
-    <button className="h-10 w-full rounded-lg border border-gray-600 bg-transparent text-sm font-medium hover:border-gray-600 hover:bg-gray-700 focus:outline-none max-sm:text-xs">
+    <button className="h-10 w-full rounded-lg border border-gray-600 bg-transparent text-sm font-medium hover:border-gray-600 hover:bg-gray-700 focus:outline-none max-sm:h-full max-sm:text-xs">
       <div className="path-gray-600 flex items-center justify-center">
         {Array.from({ length: 2 }).map((_, index) => (
           <svg
